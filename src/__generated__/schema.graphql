@@ -1,0 +1,19 @@
+type Animal {
+  name: String!
+}
+
+type AnimalsAndPokemonResponse {
+  animals: [Animal!]!
+  pokemon: [Pokemon!]!
+}
+
+type Pokemon {
+  name: String!
+  url: String!
+}
+
+type Query {
+  animals: [Animal!]!
+  animalsAndPokemon: AnimalsAndPokemonResponse
+  pokemon: [Pokemon!]!
+}
