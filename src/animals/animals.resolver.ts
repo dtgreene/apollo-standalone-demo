@@ -1,4 +1,4 @@
-import { CustomContext } from 'src/graphql/custom-context.interface.js';
+import { CustomContext } from 'src/graphql/custom-context.js';
 
 export default {
   Query: {

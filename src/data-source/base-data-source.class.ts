@@ -1,6 +1,6 @@
 import { AugmentedRequest, RESTDataSource } from '@apollo/datasource-rest';
 import { v4 as uuid } from 'uuid';
-import { CustomContext } from 'src/graphql/custom-context.interface.js';
+import { CustomContext } from 'src/graphql/custom-context.js';
 
 const Headers = {
   IDENT: 'x-identifier',

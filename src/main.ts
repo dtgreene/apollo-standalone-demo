@@ -5,11 +5,9 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
-import { CustomContext } from './graphql/custom-context.interface.js';
-import { createDataSources } from './data-source/data-sources.js';
+import { createContext, CustomContext } from './graphql/custom-context.js';
 import { typeDefs } from './graphql/type-defs.js';
 import { resolvers } from './graphql/resolvers.js';
-import { BaseDataSource } from './data-source/base-data-source.class.js';
 
 const isDev = process.env.NODE_ENV === 'development';
 // Required logic for integrating with Express
@@ -54,19 +52,7 @@ app.use('/v1/healthcheck/network', (_req, res) => {
 // expressMiddleware function.
 app.use(
   expressMiddleware(server, {
-    context: async ({ req }) => {
-      const context: CustomContext = {
-        req,
-        dataSources: createDataSources(),
-      };
-
-      // Initialize each data source
-      Object.values(context.dataSources).forEach((source: BaseDataSource) => {
-        source.init(context);
-      });
-
-      return context;
-    },
+    context: createContext,
   }),
 );
 
